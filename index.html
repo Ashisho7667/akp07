@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Health Report Form</title>
+ <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    
+  <div class="form-container">
+    <h2>Health Report Form</h2>
+    <form id="healthReportForm" action="insert.php" method="POST" enctype="multipart/form-data">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="age">Age:</label>
+      <input type="text" id="age" name="age" required>
+
+      <label for="weight">Weight:</label>
+      <input type="text" id="weight" name="weight" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="healthReport">Upload Health Report:</label>
+      <input type="file" id="healthReport" name="healthReport" required accept="application/pdf">
+
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+ <script>
+    const form = document.getElementById('healthReportForm');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();                            // Prevent form submission
+
+      const formData = new FormData(form);
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', form.action, true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          alert('Form submitted successfully!');
+          form.reset();
+        }
+      };
+      xhr.send(formData);
+    });
+  </script>
+ 
+
+  
+</body>
+</html>
